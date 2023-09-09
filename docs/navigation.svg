@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+    width="770" height="578" viewBox="-1 -1 770 578" paint-order="markers stroke fill">
+  <style>
+    :root { color: white; fill: white;
+            background-color: black;
+            font: 14px sans-serif }
+    image { image-rendering: pixelated }
+  </style>
+  <defs>
+    <!-- Only Fx appear to support 'context-stroke' currently =:-O -->
+    <path id="triangle-arrow" d="M12,0 0,5V-5z" stroke="black" stroke-width="2" />
+    <marker id="Triangle" markerUnits="userSpaceOnUse" orient="auto-start-reverse" overflow="visible">
+      <use href="#triangle-arrow" fill="context-stroke" />
+    </marker>
+    <marker id="TriangleWhite" markerUnits="userSpaceOnUse" orient="auto-start-reverse" overflow="visible">
+      <use href="#triangle-arrow" fill="white" />
+    </marker>
+    <marker id="TriangleGray" markerUnits="userSpaceOnUse" orient="auto-start-reverse" overflow="visible">
+      <use href="#triangle-arrow" fill="#C0C0C0" />
+    </marker>
+    <marker id="TriangleBlue" markerUnits="userSpaceOnUse" orient="auto-start-reverse" overflow="visible">
+      <use href="#triangle-arrow" fill="#07A8E0" />
+    </marker>
+    <marker id="TriangleRed" markerUnits="userSpaceOnUse" orient="auto-start-reverse" overflow="visible">
+      <use href="#triangle-arrow" fill="#F9561D" />
+    </marker>
+    <marker id="TriangleGreen" markerUnits="userSpaceOnUse" orient="auto-start-reverse" overflow="visible">
+      <use href="#triangle-arrow" fill="#43C800" />
+    </marker>
+    <g id="floor-nav">
+      <path d="m-4 0h8" stroke-width="6" stroke="black" />
+      <path d="m-4 0h8" stroke-width="4" marker-start="url(#Triangle)" marker-end="url(#Triangle)" />
+    </g>
+    <g id="floor-nav-blue">
+      <path d="m-4 0h8" stroke-width="6" stroke="black" />
+      <path d="m-4 0h8" stroke-width="4" stroke="#07A8E0"
+          marker-start="url(#TriangleBlue)" marker-end="url(#TriangleBlue)" />
+    </g>
+    <g id="floor-nav-red">
+      <path d="m-4 0h8" stroke-width="6" stroke="black" />
+      <path d="m-4 0h8" stroke-width="4" stroke="#F9561D"
+          marker-start="url(#TriangleRed)" marker-end="url(#TriangleRed)" />
+    </g>
+    <g id="floor-nav-green">
+      <path d="m-4 0h8" stroke-width="6" stroke="black" />
+      <path d="m-4 0h8" stroke-width="4" stroke="#43C800"
+          marker-start="url(#TriangleGreen)" marker-end="url(#TriangleGreen)" />
+    </g>
+    <linearGradient id="door-nav" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C0C0C0" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+    
+    <linearGradient id="fade-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="white" />
+      <stop offset="0.2" stop-color="white" />
+      <stop offset="0.5" stop-color="black" />
+      <stop offset="1" stop-color="black" />
+    </linearGradient>
+    <mask id="fade-out-mask" maskContentUnits="objectBoundingBox">
+      <rect width="1" height="1" fill="url(#fade-grad)" />
+    </mask>
+    <mask id="fade-in-mask" maskContentUnits="objectBoundingBox">
+      <rect transform="scale(1, -1) translate(0, -1)" width="1" height="1" fill="url(#fade-grad)" />
+    </mask>
+  </defs>
+
+  <!--rect x="-1" y="-1" width="770" height="578" fill="black" /-->
+
+  <g transform="translate(256)">
+    <image         width="256" height="192" preserveAspectRatio="none" href="room-02-doors.png" />
+    <image y="192" width="256" height="192" preserveAspectRatio="none" href="room-07-doors.png" />
+    <image y="384" width="256" height="192" preserveAspectRatio="none" href="room-12-doors.png" />
+
+    <g transform="translate(-256)"
+        stroke="gray" stroke-width="2" stroke-dasharray="6,6">
+      <rect width="768" height="576" fill="none" />
+      <path d="M0,192h768 M0,384h768 M256,0v576 M512,0v576" />
+    </g>
+
+    <g transform="translate(-256)">
+      <text y="16"  x="128" text-anchor="middle">Room-1</text>
+      <text y="16"  x="384" text-anchor="middle">Room-2</text>
+      <text y="16"  x="640" text-anchor="middle">Room-3</text>
+      <text y="208" x="128" text-anchor="middle">Room-6</text>
+      <text y="208" x="384" text-anchor="middle">Room-7</text>
+      <text y="208" x="640" text-anchor="middle">Room-8</text>
+      <text y="400" x="128" text-anchor="middle">Room-11</text>
+      <text y="400" x="384" text-anchor="middle">Room-12</text>
+      <text y="400" x="640" text-anchor="middle">Room-13</text>
+
+      <text x="236" y="37"  text-anchor="end"   fill="#07A8E0">Top Floor</text>
+      <text x="236" y="97"  text-anchor="end"   fill="#F9561D">Middle Floor</text>
+      <text x="236" y="157" text-anchor="end"   fill="#43C800">Bottom Floor</text>
+      <text x="532" y="157" text-anchor="start" fill="#43C800">Bottom Floor</text>
+      <text x="532" y="229" text-anchor="start" fill="#07A8E0">Top Floor</text>
+      <text x="236" y="289" text-anchor="end"   fill="#F9561D">Middle Floor</text>
+      <text x="236" y="349" text-anchor="end"   fill="#43C800">Bottom Floor</text>
+      <text x="236" y="421" text-anchor="end"   fill="#07A8E0">Top Floor</text>
+      <text x="236" y="481" text-anchor="end"   fill="#F9561D">Middle Floor</text>
+      <text x="236" y="541" text-anchor="end"   fill="#43C800">Bottom Floor</text>
+      <text x="532" y="481" text-anchor="start" fill="#F9561D">Middle Floor</text>
+      <text x="532" y="541" text-anchor="start" fill="#43C800">Bottom Floor</text>
+    </g>
+
+    <g stroke-linecap="round" stroke-width="4">
+      <use y="32"          href="#floor-nav-blue" />
+      <use y="92"          href="#floor-nav-red" />
+      <use y="152"         href="#floor-nav-green" />
+      <use y="152" x="256" href="#floor-nav-green" />
+      <use y="224" x="256" href="#floor-nav-blue" />
+      <use y="284"         href="#floor-nav-red" />
+      <use y="344"         href="#floor-nav-green" />
+      <use y="416"         href="#floor-nav-blue" />
+      <use y="476"         href="#floor-nav-red" />
+      <use y="476" x="256" href="#floor-nav-red" />
+      <use y="536"         href="#floor-nav-green" />
+      <use y="536" x="256" href="#floor-nav-green" />
+    </g>
+
+    <g stroke="url(#door-nav)" stroke-width="4" stroke-linecap="round">
+      <!-- Give vertical lines faux dimensions to make gradient applied to their stroke. -->
+      <path d="M44.5 180v151" stroke="black" stroke-width="6" />
+      <path d="M44.5 180v1m1 0m-1 -1v151" marker-start="url(#TriangleGray)" marker-end="url(#TriangleWhite)" />
+      <path d="M191.5 256v151" stroke="black" stroke-width="6" />
+      <path d="M191.5 256v1m1 0m-1 -1v151" marker-start="url(#TriangleGray)" marker-end="url(#TriangleWhite)" />
+      <path d="M236.5 180v91" stroke="black" stroke-width="6" />
+      <path d="M236.5 180v1m1 0m-1 -1v91" marker-start="url(#TriangleGray)" marker-end="url(#TriangleWhite)" />
+    </g>
+  </g>
+</svg>
