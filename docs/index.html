@@ -207,9 +207,29 @@
 worth of treasure:</p>
 
 <figure>
-  <img alt="$ 356260" src="the-end.png" width="256" height="192">
+  <img alt="$ 356260" src="the-end.png" width="256" height="192"
+      id="end-screen" title="Click to toggle animation">
   <figcaption>Ending screen (Barney jumps from joy)</figcaption>
 </figure>
+
+<script>
+  (() => {
+    let img = document.getElementById("end-screen");
+    img.tabIndex = 0;
+    img.onclick = toggleAnim;
+    img.onkeydown = evt => {
+      if (evt.keyCode === 32) {
+        toggleAnim();
+        evt.preventDefault();
+      }
+    };
+
+    function toggleAnim() {
+      img.src = img.classList.toggle("anim") ? "the-end-anim.gif"
+                                             : "the-end.png";
+    }
+  })();
+</script>
 
 <aside>See: <a href="https://www.youtube.com/watch?v=yoRZBCN_6v8"
     target="youtube-mm">🎞️ Mabel's Mansion – Ending</a></aside>
