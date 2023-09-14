@@ -72,7 +72,7 @@
     figcaption {
       font-style: italic;
     }
-    img:target { outline: thin yellow dashed }
+    td > img:target { outline: thin yellow dashed }
     :target { background-color: rgba(240, 240, 128, 0.2); }
     @media (max-width: calc(1288px + 4ch)) {
       .screens > caption {
@@ -184,7 +184,7 @@
   down on the target screen/room.</p>
 
   <figure style="margin-left: 0; margin-right: 0">
-    <object data="navigation.svg">map-navigation</object>
+    <object data="navigation.svg" tabindex="-1">map-navigation</object>
     <figcaption>Door and floor navigation</figcaption>
   </figure>
 </section>

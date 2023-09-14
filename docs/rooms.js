@@ -2,45 +2,79 @@
   resetRooms();
   document.getElementById("reveal-all").onclick = resetRooms;
 
-  let targetRoom = { };
-  forEachRoom(img => img.onclick = evt => selectTargetRoom(evt.target));
+  let targetRoom;
+  let savedScroll;
+  let lastScroll = { y: 0, x: 0 };
+
+  forEachRoom(img => img.tabIndex = 0); // Make focusable
+
+  document.addEventListener("focus", evt => {
+    if (evt.target === document) return;
+
+    if (evt.target.id &&
+        evt.target.localName === "img" &&
+        evt.target.closest("#game-map") &&
+        location.hash != "#" + evt.target.id) {
+      selectTargetRoom(evt.target);
+    } else if (location.hash.length > 1 &&
+        location.hash != "#" + evt.target.id) {
+      //setTimeout(() => selectTargetRoom(null));
+      selectTargetRoom(null);
+    }
+  }, true);
 
   window.addEventListener("scroll", scrollTargetRoomIntoView);
   window.addEventListener("hashchange", scrollTargetRoomIntoView);
+
   document.addEventListener("DOMContentLoaded", evt => {
     let hash = location.hash;
-    if (hash.startsWith("#room-") &&
-        window.scrollY === 0 && window.scrollX === 0) {
-      targetRoom.origY = 0;
-      targetRoom.origX = 0;
-      targetRoom.img = document.getElementById(hash.substring(1));
+    if (hash.startsWith("#room-")) {
+      focusRoom(hash.substring(1));
     }
 
     document.querySelectorAll("a[href^='#room-']").forEach(link => {
       link.onclick = evt => {
         let hash = evt.target.getAttribute("href");
-        selectTargetRoom(document.getElementById(hash.substring(1)));
+        focusRoom(hash.substring(1));
         evt.preventDefault();
       };
     });
   });
 
-  function selectTargetRoom(img) {
-      //img.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
-      targetRoom.origY = window.scrollY;
-      targetRoom.origX = window.scrollX;
-      targetRoom.img = img;
-
-      // Doesn't update CSS :target
-      //history.replaceState({}, "", "#" + img.id);
-      location.replace("#" + img.id);
+  function focusRoom(id) {
+      let room = document.getElementById(id);
+      if (room) room.focus();
   }
 
-  function scrollTargetRoomIntoView() {
-    if (targetRoom.img) {
-      window.scrollTo({ top: targetRoom.origY, left: targetRoom.origX, behavior: "instant" });
-      targetRoom.img.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
-      targetRoom.img = null;
+  function selectTargetRoom(img) {
+    //img.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+    if (img) {
+      savedScroll = { y: lastScroll.y,
+                      x: lastScroll.x };
+    } else {
+      savedScroll = { y: window.scrollY,
+                      x: window.scrollX };
+    }
+    targetRoom = img;
+    location.replace("#" + (img ? img.id : ""));
+  }
+
+  function scrollTargetRoomIntoView(evt) {
+    if (evt.type === "scroll") {
+      lastScroll.y = window.scrollY;
+      lastScroll.x = window.scrollX;
+    }
+    if (savedScroll) {
+      window.scrollTo({ top: savedScroll.y,
+                        left: savedScroll.x,
+                        behavior: "instant" });
+      savedScroll = null;
+    }
+    if (targetRoom) {
+      targetRoom.scrollIntoView({ block: "nearest",
+                                  inline: "nearest",
+                                  behavior: "smooth" });
+      targetRoom = null;
     }
   }
 
