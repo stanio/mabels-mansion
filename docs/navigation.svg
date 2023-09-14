@@ -5,7 +5,7 @@
     :root { color: white; fill: white;
             background-color: black;
             font: 14px sans-serif }
-    image { image-rendering: pixelated }
+    /*image { image-rendering: pixelated }*/
   </style>
   <defs>
     <!-- Only Fx appear to support 'context-stroke' currently =:-O -->
