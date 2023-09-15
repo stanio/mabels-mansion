@@ -14,7 +14,9 @@
 
     updateLocation(evt);
   }, true);
-  document.addEventListener("click", updateLocation, true);
+  //document.addEventListener("click", evt => {
+  //  updateLocation(evt);
+  //}, true);
 
   function updateLocation(evt) {
     if (evt.target.id &&
@@ -24,7 +26,6 @@
       selectTargetRoom(evt.target);
     } else if (location.hash.length > 1 &&
         location.hash != "#" + evt.target.id) {
-      //setTimeout(() => selectTargetRoom(null));
       selectTargetRoom(null);
     }
   }
@@ -59,7 +60,7 @@
 
   function focusRoom(id) {
       let room = document.getElementById(id);
-      if (room) room.focus();
+      if (room) room.focus({ preventScroll: true });
   }
 
   function selectTargetRoom(img) {
