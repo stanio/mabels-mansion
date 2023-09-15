@@ -41,6 +41,8 @@
 
     let hash = location.hash;
     if (hash.startsWith("#room-")) {
+      savedScroll = { y: window.scrollY,
+                      x: window.scrollX };
       focusRoom(hash.substring(1));
     }
   });
