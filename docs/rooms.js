@@ -4,9 +4,10 @@
 
   let targetRoom;
   let savedScroll;
-  let lastScroll = { y: 0, x: 0 };
+  let lastScroll = { y: window.scrollY,
+                     x: window.scrollX };
 
-  forEachRoom(img => img.tabIndex = 0); // Make focusable
+  forEachRoom(img => img.tabIndex = 0);
 
   document.addEventListener("focus", evt => {
     if (evt.target === document) return;
@@ -23,10 +24,14 @@
     }
   }, true);
 
-  window.addEventListener("scroll", scrollTargetRoomIntoView);
+  document.addEventListener("scroll", updateLastScroll);
+  document.addEventListener("scrollend", updateLastScroll);
+
+  document.addEventListener("scroll", scrollTargetRoomIntoView);
+  document.addEventListener("scrollend", scrollTargetRoomIntoView);
   window.addEventListener("hashchange", scrollTargetRoomIntoView);
 
-  document.addEventListener("DOMContentLoaded", evt => {
+  document.addEventListener("DOMContentLoaded", () => {
     let hash = location.hash;
     if (hash.startsWith("#room-")) {
       focusRoom(hash.substring(1));
@@ -59,11 +64,12 @@
     location.replace("#" + (img ? img.id : ""));
   }
 
-  function scrollTargetRoomIntoView(evt) {
-    if (evt.type === "scroll") {
-      lastScroll.y = window.scrollY;
-      lastScroll.x = window.scrollX;
-    }
+  function updateLastScroll() {
+    lastScroll.y = window.scrollY;
+    lastScroll.x = window.scrollX;
+  }
+
+  function scrollTargetRoomIntoView() {
     if (savedScroll) {
       window.scrollTo({ top: savedScroll.y,
                         left: savedScroll.x,
