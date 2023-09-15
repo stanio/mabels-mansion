@@ -36,12 +36,16 @@
   document.addEventListener("scrollend", scrollTargetRoomIntoView);
   window.addEventListener("hashchange", scrollTargetRoomIntoView);
 
-  document.addEventListener("DOMContentLoaded", () => {
+  window.addEventListener("pageshow", () => {
+    updateLastScroll();
+
     let hash = location.hash;
     if (hash.startsWith("#room-")) {
       focusRoom(hash.substring(1));
     }
+  });
 
+  document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("a[href^='#room-']").forEach(link => {
       link.onclick = evt => {
         let hash = evt.target.getAttribute("href");
@@ -58,14 +62,16 @@
 
   function selectTargetRoom(img) {
     //img.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
-    if (img) {
+    if (savedScroll) {
+      // Prevent scroll into view
+    } else if (img) {
       savedScroll = { y: lastScroll.y,
                       x: lastScroll.x };
+      targetRoom = img;
     } else {
       savedScroll = { y: window.scrollY,
                       x: window.scrollX };
     }
-    targetRoom = img;
     location.replace("#" + (img ? img.id : ""));
   }
 
