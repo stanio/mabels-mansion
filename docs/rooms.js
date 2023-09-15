@@ -12,6 +12,11 @@
   document.addEventListener("focus", evt => {
     if (evt.target === document) return;
 
+    updateLocation(evt);
+  }, true);
+  document.addEventListener("click", updateLocation, true);
+
+  function updateLocation(evt) {
     if (evt.target.id &&
         evt.target.localName === "img" &&
         evt.target.closest("#game-map") &&
@@ -22,7 +27,7 @@
       //setTimeout(() => selectTargetRoom(null));
       selectTargetRoom(null);
     }
-  }, true);
+  }
 
   document.addEventListener("scroll", updateLastScroll);
   document.addEventListener("scrollend", updateLastScroll);
