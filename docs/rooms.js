@@ -48,13 +48,67 @@
     }
   });
 
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll("a[href^='#room-']").forEach(link => {
-      link.onclick = evt => {
-        let hash = evt.target.getAttribute("href");
-        focusRoom(hash.substring(1));
+  document.body.addEventListener("click", evt => {
+    let roomId = getRoomRef(evt.target);
+    if (roomId) {
+        focusRoom(roomId);
         evt.preventDefault();
-      };
+    }
+  }, true);
+
+  function getRoomRef(elem) {
+    let hash = elem.getAttribute("href");
+    if (elem.localName == "a" && hash.startsWith("#room-")) {
+      return hash.substring(1);
+    }
+  }
+
+  let preview = document.getElementById("room-preview");
+  let previewTrigger;
+  let shiftKey = false;
+
+  ["mouseover", "focus"].forEach(type => {
+    document.body.addEventListener(type, evt => {
+      let roomId = getRoomRef(evt.target);
+      if (roomId) {
+        preview.alt = roomId;
+        updatePreviewSrc();
+
+        // 256x192 - preview dimensions, 22 - text line height
+        let vport = document.documentElement;
+        let anchor = evt.target;
+        let x = anchor.offsetLeft + Math.min(0,
+            vport.clientWidth + vport.scrollLeft - anchor.offsetLeft - 256);
+        let y = anchor.offsetTop;
+        y += (y - vport.scrollTop + 192 + 22 > vport.clientHeight) ? -192 : 22;
+
+        preview.style.position = "absolute";
+        preview.style.top = y + "px";
+        preview.style.left = x + "px";
+
+        preview.style.display = "block";
+        previewTrigger = anchor;
+      } else if (previewTrigger != document.activeElement) {
+        preview.style.display = "none";
+        preview.alt = "";
+      }
+    }, true);
+  });
+
+  function updatePreviewSrc() {
+    if (preview.alt) {
+      let reveal = document.getElementById("reveal-all").checked;
+      let src = preview.alt + (reveal ^ shiftKey ? "-empty" : "") + ".png";
+      if (!preview.src.endsWith(src)) preview.src = src;
+    }
+  }
+
+  ["keydown", "keyup"].forEach(type => {
+    document.body.addEventListener(type, evt => {
+      if (evt.keyCode === 16) {
+        shiftKey = (evt.type === "keydown");
+        updatePreviewSrc();
+      }
     });
   });
 
