@@ -24,7 +24,7 @@
         evt.target.closest("#game-map") &&
         location.hash != "#" + evt.target.id) {
       selectTargetRoom(evt.target);
-    } else if (location.hash.length > 1 &&
+    } else if (location.hash.startsWith("#room-") &&
         location.hash != "#" + evt.target.id) {
       selectTargetRoom(null);
     }
