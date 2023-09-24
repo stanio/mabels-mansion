@@ -90,9 +90,18 @@
         previewTrigger = anchor;
       } else if (previewTrigger != document.activeElement) {
         preview.style.display = "none";
-        preview.alt = "";
       }
     }, true);
+  });
+
+  ["mousemove", "click"].forEach(type => {
+    document.body.addEventListener(type, evt => {
+      if (getRoomRef(evt.target)) return;
+
+      if (previewTrigger != document.activeElement) {
+        preview.style.display = "none";
+      }
+    });
   });
 
   function updatePreviewSrc() {
