@@ -65,7 +65,7 @@ figcaption {
 }
 td > img:target { outline: thin yellow dashed }
 :target { background-color: rgba(240, 240, 128, 0.2); }
-@media (max-width: calc(1288px + 4ch)) {
+@media (max-width: 1024px) {
   .screens > caption {
     text-align: left;
   }
