@@ -6,6 +6,7 @@
   let savedScroll;
   let lastScroll = { y: window.scrollY,
                      x: window.scrollX };
+  let backPos;
 
   forEachRoom(img => img.tabIndex = 0);
 
@@ -121,9 +122,31 @@
     });
   });
 
+  document.body.addEventListener("keydown", evt => {
+    if (evt.keyCode === 8 && backPos) {
+      if (backPos.focusElem) {
+        backPos.focusElem.focus({ preventScroll: true });
+        // The `preventScroll` option prevents the `scrollTo`
+        // if attempted immediately.
+        setTimeout(smoothScrollTo, 0, backPos.y, backPos.x);
+      } else {
+        smoothScrollTo(backPos.y, backPos.x);
+      }
+      backPos = null;
+    }
+
+    function smoothScrollTo(y, x) {
+      window.scrollTo({ top: y, left: x, behavior: "smooth" });
+    }
+  });
+
   function focusRoom(id) {
       let room = document.getElementById(id);
-      if (room) room.focus({ preventScroll: true });
+      if (room) {
+        backPos = structuredClone(lastScroll);
+        backPos.focusElem = document.activeElement;
+        room.focus({ preventScroll: true });
+      }
   }
 
   function selectTargetRoom(img) {
