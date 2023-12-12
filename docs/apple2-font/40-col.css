@@ -1,0 +1,15 @@
+/*
+ * Apple 2 fonts by Kreative Korporation
+ * https://www.kreativekorp.com/software/fonts/apple2/
+ *
+ * See: https://www.kreativekorp.com/software/fonts/FreeLicense.txt
+ */
+
+body, kbd {
+  font-family: "Print Char 21", monospace;
+}
+
+@font-face {
+  font-family: "Print Char 21";
+  src: url("PrintChar21.ttf");
+}
