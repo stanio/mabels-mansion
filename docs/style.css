@@ -1,9 +1,6 @@
 body {
   font: 16px/1.4 monospace;
   max-width: 80ch;
-  color-scheme: dark light;
-  background: Canvas;
-  color: CanvasText;
 }
 .screens {
   border-spacing: 0;
