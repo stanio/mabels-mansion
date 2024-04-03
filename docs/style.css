@@ -34,6 +34,9 @@ body {
   height: 192px;
   /*image-rendering: pixelated;*/
 }
+#reveal-all {
+  vertical-align: text-bottom;
+}
 h1 {
   font-size: 1.6em;
   display: inline;
