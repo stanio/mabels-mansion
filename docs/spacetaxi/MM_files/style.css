@@ -1,0 +1,64 @@
+body {
+  background-color: light-dark(#AACCFF, Canvas);
+  background-color: light-dark(#CCDDFF, Canvas);
+  color: light-dark(black, CanvasText);
+}
+
+:root { font-size: 150% }
+h1 {
+  font-size: 200%;
+  display: inline;
+}
+h2 {
+  font-size: 180%;
+  margin-bottom: 0;
+}
+h3 {
+  font-size: 140%;
+  margin-bottom: 0;
+}
+h1 + p {
+  display: inline;
+}
+h1 + p::before {
+  content: ", ";
+}
+img {
+  max-width: 100%;
+}
+img[src$="MAP-Mabels-Mansion-Top.jpg"] {
+  max-width: none;
+}
+img[src$="MAP-Mabels-Mansion-Bottom.jpg"] {
+  margin-left: 1px;
+  max-width: none;
+}
+
+h1, .up, h3 {
+  text-transform: uppercase;
+}
+h2, h3 {
+  margin-top: 1rem;
+}
+.bugs > h3 {
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: none;
+}
+figure, p {
+  margin-block: 0.67rem; /* 1 / 1.5 */
+}
+figure {
+  margin-inline: 0;
+}
+hr {
+  color: inherit;
+  border-style: solid;
+  margin-block: 1em;
+}
+figure > img {
+  display: block;
+}
+img {
+  vertical-align: bottom;
+}
