@@ -46,15 +46,12 @@ h2, h3 {
   text-transform: none;
 }
 figure, p {
-  margin-block: 0.67rem; /* 1 / 1.5 */
-}
-figure {
-  margin-inline: 0;
+  margin: 0.67rem 0; /* 1 / 1.5 */
 }
 hr {
   color: inherit;
   border-style: solid;
-  margin-block: 1em;
+  margin: 1em 0;
 }
 figure > img {
   display: block;
