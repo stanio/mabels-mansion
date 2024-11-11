@@ -59,3 +59,8 @@ figure > img {
 img {
   vertical-align: bottom;
 }
+
+#update-label {
+  color: light-dark(#BB8800, #FFCC00);
+  font-weight: bold;
+}
