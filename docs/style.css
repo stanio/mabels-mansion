@@ -44,8 +44,8 @@ h1 {
 h1 + p {
   display: inline;
 }
-h1::after {
-  content: ",";
+h1 + p::before {
+  content: ", ";
 }
 h2 { font-size: 1.4em }
 h3 { font-size: 1.2em }
