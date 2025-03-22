@@ -24,7 +24,7 @@ body {
   padding-right: 4px;
 }
 .screens > thead > tr > th {
-  padding: 4px;
+  padding: 4px 1ch;
 }
 .screens img {
   display: block;
@@ -71,11 +71,28 @@ figcaption {
 img[alt="map-navigation"] { max-width: min(calc(100vw - 32px), 100%) }
 td > img:target { outline: thin yellow dashed }
 :target { background-color: rgba(240, 240, 128, 0.2); }
-@media (max-width: 1024px) {
-  .screens > caption {
-    text-align: left;
-  }
+
+#game-map > caption {
+  max-width: calc(100vw - 8px);
+  position: sticky;
+  left: 0;
 }
+#game-map > thead {
+  position: sticky;
+  top: 0;
+}
+#game-map > tbody > tr > :first-child {
+  position: sticky;
+  left: 0;
+}
+#game-map > thead > tr > *,
+#game-map > tbody > tr > :first-child {
+  -webkit-text-stroke-width: 1ch;
+  -webkit-text-stroke-color: rgba(0, 0, 0, 0.75);
+  paint-order: stroke fill;
+  stroke-linejoin: round;
+}
+
 a[href^="#room-"] { white-space: pre }
 #room-preview { box-shadow: 3px 2px 2px rgba(0, 0, 0, 0.5) }
 #end-screen, #room-preview { aspect-ratio: 4 / 3 }
