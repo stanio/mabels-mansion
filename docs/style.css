@@ -87,10 +87,8 @@ td > img:target { outline: thin yellow dashed }
 }
 #game-map > thead > tr > *,
 #game-map > tbody > tr > :first-child {
-  -webkit-text-stroke-width: 1ch;
-  -webkit-text-stroke-color: rgba(0, 0, 0, 0.75);
-  paint-order: stroke fill;
-  stroke-linejoin: round;
+  text-shadow: 0 0 0.5px black, 0 0 1px black, 0.5px 0.5px 0.5px black;
+  background-image: radial-gradient(black, transparent 50%);
 }
 
 a[href^="#room-"] { white-space: pre }
