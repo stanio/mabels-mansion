@@ -25,29 +25,29 @@
         evt.target.closest("#game-map") &&
         location.hash != "#" + evt.target.id) {
       selectTargetRoom(evt.target);
-    } else if (location.hash.startsWith("#room-") &&
-        location.hash != "#" + evt.target.id) {
-      selectTargetRoom(null);
+    //} else if (location.hash.startsWith("#room-") &&
+    //    location.hash != "#" + evt.target.id) {
+    //  selectTargetRoom(null);
     }
   }
 
-  document.addEventListener("scroll", updateLastScroll);
-  document.addEventListener("scrollend", updateLastScroll);
-
-  document.addEventListener("scroll", scrollTargetRoomIntoView);
-  document.addEventListener("scrollend", scrollTargetRoomIntoView);
-  window.addEventListener("hashchange", scrollTargetRoomIntoView);
-
-  window.addEventListener("pageshow", () => {
-    updateLastScroll();
-
-    let hash = location.hash;
-    if (hash.startsWith("#room-")) {
-      savedScroll = { y: window.scrollY,
-                      x: window.scrollX };
-      focusRoom(hash.substring(1));
-    }
-  });
+  //document.addEventListener("scroll", updateLastScroll);
+  //document.addEventListener("scrollend", updateLastScroll);
+  //
+  //document.addEventListener("scroll", scrollTargetRoomIntoView);
+  //document.addEventListener("scrollend", scrollTargetRoomIntoView);
+  //window.addEventListener("hashchange", scrollTargetRoomIntoView);
+  //
+  //window.addEventListener("pageshow", () => {
+  //  updateLastScroll();
+  //
+  //  let hash = location.hash;
+  //  if (hash.startsWith("#room-")) {
+  //    savedScroll = { y: window.scrollY,
+  //                    x: window.scrollX };
+  //    focusRoom(hash.substring(1));
+  //  }
+  //});
 
   document.body.addEventListener("click", evt => {
     let roomId = getRoomRef(evt.target);
@@ -124,15 +124,15 @@
 
   document.body.addEventListener("keydown", evt => {
     if (evt.keyCode === 8 && backPos) {
-      if (backPos.focusElem) {
-        backPos.focusElem.focus({ preventScroll: true });
-        // The `preventScroll` option prevents the `scrollTo`
-        // if attempted immediately.
-        setTimeout(smoothScrollTo, 0, backPos.y, backPos.x);
-      } else {
-        smoothScrollTo(backPos.y, backPos.x);
-      }
-      backPos = null;
+      //if (backPos.focusElem) {
+      //  backPos.focusElem.focus({ preventScroll: true });
+      //  // The `preventScroll` option prevents the `scrollTo`
+      //  // if attempted immediately.
+      //  setTimeout(smoothScrollTo, 0, backPos.y, backPos.x);
+      //} else {
+      //  smoothScrollTo(backPos.y, backPos.x);
+      //}
+      //backPos = null;
     }
 
     function smoothScrollTo(y, x) {
@@ -145,22 +145,23 @@
       if (room) {
         backPos = structuredClone(lastScroll);
         backPos.focusElem = document.activeElement;
-        room.focus({ preventScroll: true });
+        //room.focus({ preventScroll: true });
+        room.focus({ smoothScroll: true });
       }
   }
 
   function selectTargetRoom(img) {
-    //img.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
-    if (savedScroll) {
-      // Prevent scroll into view
-    } else if (img) {
-      savedScroll = { y: lastScroll.y,
-                      x: lastScroll.x };
-      targetRoom = img;
-    } else {
-      savedScroll = { y: window.scrollY,
-                      x: window.scrollX };
-    }
+    ////img.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+    //if (savedScroll) {
+    //  // Prevent scroll into view
+    //} else if (img) {
+    //  savedScroll = { y: lastScroll.y,
+    //                  x: lastScroll.x };
+    //  targetRoom = img;
+    //} else {
+    //  savedScroll = { y: window.scrollY,
+    //                  x: window.scrollX };
+    //}
     location.replace("#" + (img ? img.id : ""));
   }
 
