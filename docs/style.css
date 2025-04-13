@@ -70,7 +70,10 @@ figcaption {
 }
 img[alt="map-navigation"] { max-width: min(calc(100vw - 32px), 100%) }
 td > img:target { outline: thin yellow dashed }
-:target { background-color: rgba(240, 240, 128, 0.2); }
+:target { background-color: rgba(240, 240, 128, 0.2);
+ scroll-margin: calc(1lh + 9px) calc(3ch + 9px) }
+
+:any-link { scroll-margin: 1lh 2ch }
 
 #game-map > caption {
   max-width: calc(100vw - 8px);
@@ -88,7 +91,7 @@ td > img:target { outline: thin yellow dashed }
 #game-map > thead > tr > *,
 #game-map > tbody > tr > :first-child {
   text-shadow: 0 0 0.5px black, 0 0 1px black, 0.5px 0.5px 0.5px black;
-  background-image: radial-gradient(black, transparent 50%);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 a[href^="#room-"] { white-space: pre }
