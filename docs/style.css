@@ -71,9 +71,9 @@ figcaption {
   font-style: italic;
 }
 img[alt="map-navigation"] { max-width: min(calc(100vw - 32px), 100%) }
-td > img:target { outline: thin yellow dashed }
-:target { background-color: rgba(240, 240, 128, 0.2);
- scroll-margin: calc(1lh + 9px) calc(3ch + 9px) }
+td > img:target { outline: thin yellow dashed;
+  scroll-margin: calc(1lh + 8px) calc(3ch + 8px); }
+h2:target, :target h2 { background-color: rgba(240, 240, 128, 0.2); }
 
 :any-link { scroll-margin: 1lh 2ch }
 
