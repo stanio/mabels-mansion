@@ -26,6 +26,7 @@ body {
 }
 .screens > thead > tr > th {
   padding: 4px 1ch 3px 1ch;
+  border-right: none;
   border-bottom: 1px solid transparent;
 }
 .screens img {
