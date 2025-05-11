@@ -25,9 +25,10 @@
         evt.target.closest("#game-map") &&
         location.hash != "#" + evt.target.id) {
       selectTargetRoom(evt.target);
-    //} else if (location.hash.startsWith("#room-") &&
-    //    location.hash != "#" + evt.target.id) {
-    //  selectTargetRoom(null);
+    } else if (location.hash.startsWith("#room-") &&
+        location.hash != "#" + evt.target.id) {
+      selectTargetRoom(null);
+      evt.target.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
     }
   }
 
@@ -163,6 +164,9 @@
     //                  x: window.scrollX };
     //}
     location.replace("#" + (img ? img.id : ""));
+    if (img) {
+      img.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+    }
   }
 
   function updateLastScroll() {
